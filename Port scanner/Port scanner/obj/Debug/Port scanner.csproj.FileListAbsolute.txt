@@ -1,0 +1,10 @@
+G:\Work\Port scanner\Port scanner\bin\Debug\Port scanner.exe.config
+G:\Work\Port scanner\Port scanner\bin\Debug\Port scanner.exe
+G:\Work\Port scanner\Port scanner\bin\Debug\Port scanner.pdb
+G:\Work\Port scanner\Port scanner\obj\Debug\Port scanner.csprojResolveAssemblyReference.cache
+G:\Work\Port scanner\Port scanner\obj\Debug\Port_scanner.Form1.resources
+G:\Work\Port scanner\Port scanner\obj\Debug\Port_scanner.Properties.Resources.resources
+G:\Work\Port scanner\Port scanner\obj\Debug\Port scanner.csproj.GenerateResource.Cache
+G:\Work\Port scanner\Port scanner\obj\Debug\Port scanner.exe
+G:\Work\Port scanner\Port scanner\obj\Debug\Port scanner.pdb
+G:\Work\Port scanner\Port scanner\obj\Debug\Port_scanner.Form2.resources
