@@ -105,3 +105,8 @@ private void checkBox2_CheckedChanged(object sender, EventArgs e)//点选按钮�
 
 [2]<明日科技>.《C#从入门到精通》[M].清华大学出版社，2012.9第3版
 
+
+####动态演示
+
+<img src="https://github.com/msAndroid/PortScanner/blob/master/portscanner_img/portscanner.gif" alt="Drawing" width="800px" />
+
