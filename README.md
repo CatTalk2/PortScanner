@@ -1,5 +1,9 @@
 ##PortScanner项目(C#实现多线程端口扫描器)说明
 ###1.	概述
+文件结构
+
+<img src="https://github.com/msAndroid/PortScanner/blob/master/portscanner_img/about.png" alt="Drawing" width="600px" />
+
 ####1.1	课程设计目的
  加深TCP/IP协议的理解，掌握TCP四次握手机制，同时熟悉socket编程。
 ####1.2	课程设计内容
@@ -16,6 +20,8 @@ Windows xp、Windows 7、Windows8，Visual Studio2013
 >端口扫描有好几种，但其中TCP connect扫描是最基本的扫描，我们可以利用系统提供的connect()用来与每一个目标计算机的端口进行连接。如果端口处于侦听状态，那connect()就能成功。否则，这个端口即是不可用的，也就是说没有提供服务。这个技术的一个最大的优点是，你不需要任何权限。系统中的任何用户都有权利使用这个调用。另一个好处就是速度，如果对每个目标端口以线性的方式，使用单独的connect()调用，那么将花费相当长的时间，使用者可以通过多线程同时打开多个套接字来加速扫描。使用非阻塞I/O允许设置一个低的时间用尽周期，同时观察多个套接字。但这种方法的缺点是很容易被察觉，并且被防火墙将扫描信息包过滤掉。目标计算机的Logs文件会显示一连串的连接和连接出错消息，并且能很快使它关闭。
 
 ####2.2	程序流程图
+ 
+<img src="https://github.com/msAndroid/PortScanner/blob/master/portscanner_img/1.png" alt="Drawing" width="500px" />
  
 说明：扫描器可实现对单个主机单个端口的扫描也可实现对网段内主机和范围内端口进行逐个扫描，因此操作时要注意是单个主机扫描还是多个IP地址扫描，以及扫描端口范围。确定扫描IP和扫描端口后点击开始即可对相应IP下的端口进行侦听，并返回端口状态，如果端口开放则同时返回端口服务，扫描结束后线程停止。
 ####2.3	主要数据结构
@@ -55,29 +61,38 @@ private void checkBox2_CheckedChanged(object sender, EventArgs e)//点选按钮�
 ```
 ###3.	用户使用手册
 （1），端口扫描器主界面如图所示：
- 
+
+ <img src="https://github.com/msAndroid/PortScanner/blob/master/portscanner_img/2.png" alt="Drawing" width="600px" />
 
 运行程序系统进入主界面，主界面中主要包括以下布局：IP地址设置、端口范围设置、线程数设置、Ping超时时间限制、扫描进度、显示扫描结果、开始停止和关于按钮。
 （2），扫描单个主机或单个端口：
 当需要扫描单个主机或者单个端口是，需要点选“扫描单个主机”“扫面单个端口”选框，这时IP范围设置和端口范围设置各自的第二个编辑框变为只读属性，无法再填写相应字段。
  
+ <img src="https://github.com/msAndroid/PortScanner/blob/master/portscanner_img/3.png" alt="Drawing" width="600px" />
+ 
 （3），设置线程数和超时限制：
 由于多线程，可以分配多个线程，但为了避免消耗过多资源导致主机奔溃建议1-30；
 超时限制可通过TrackBar滑动选择，默认为10-30s，注意下方的编辑框是只读属性。
+
+<img src="https://github.com/msAndroid/PortScanner/blob/master/portscanner_img/4.png" alt="Drawing" width="200px" />
  
 （4）开始、停止、关于按钮：
 设置好需要扫描的IP和端口后，点击开始按钮，即可进行扫描，点击停止，将线程挂起，扫描结束。点击关于按钮，弹出个人信息及软件反馈地址。
  
+ <img src="https://github.com/msAndroid/PortScanner/blob/master/portscanner_img/5.png" alt="Drawing" width="600px" />
+ 
 （5），显示扫描结果：
 通过richTextBox控件显示扫描结果找出开放端口，ListBox控件动态显示扫描结果，包括扫描IP地址，端口号，端口状态（closed、open），以及开放端口服务名称。
  
+ <img src="https://github.com/msAndroid/PortScanner/blob/master/portscanner_img/6.png" alt="Drawing" width="500px" />
 
 ###4.	心得体会与总结
 ####4.1	心得体会
 如图：对主机就127.0.0.1进行测试，符合预期结果。
  
+ <img src="https://github.com/msAndroid/PortScanner/blob/master/portscanner_img/7.png" alt="Drawing" width="600px" />
 
- 
+ <img src="https://github.com/msAndroid/PortScanner/blob/master/portscanner_img/8.png" alt="Drawing" width="600px" />
 
 根据计算机网络知识，可以看到通过对单个主机和网段内的多个主机进行端口扫描都得到了正确结果。创建一个socket，通过TCP connect()测试该主机的某个端口是否能够连通，获得该端口的状态，如果open则获知它的服务。
 当然由于采用TCP connect()方法，不可避免的有它的缺陷，因为大量无需权限的访问，容易被防火墙过滤掉，因此可以进行这方面的改进。可以采用TCP SYN扫描、TCP FIN扫描、TCP反向ident扫描、FTP返回攻击等。
